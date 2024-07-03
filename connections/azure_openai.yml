@@ -1,6 +1,0 @@
-$schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
-name: azure_openai_connection_yml
-type: azure_open_ai
-api_key: "cd70782df030480289375c0c6eaa2bf6"
-api_base: "https://az-openai-svc-eastus-gpt4.openai.azure.com/"
-api_type: "azure"
