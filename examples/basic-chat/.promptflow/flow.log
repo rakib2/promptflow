@@ -1,0 +1,55 @@
+2024-06-28 13:08:31 +0200    2216 execution.flow     INFO     Start executing nodes in thread pool mode.
+2024-06-28 13:08:31 +0200    2216 execution.flow     INFO     Start to run 1 nodes with concurrency level 16.
+2024-06-28 13:08:31 +0200    2216 execution.flow     INFO     Executing node chat. node run id: aa9bc531-28ee-429f-9355-7f1400986f88_chat_0
+2024-06-28 13:08:34 +0200    2216 execution          WARNING  [chat in line 0 (index starts from 0)] stderr> Exception occurs: AuthenticationError: Error code: 401 - {'statusCode': 401, 'message': 'Unauthorized. Access token is missing, invalid, audience is incorrect (https://cognitiveservices.azure.com), or have expired.'}
+2024-06-28 13:08:34 +0200    2216 execution          ERROR    Node chat in line 0 failed. Exception: OpenAI API hits AuthenticationError: Error code: 401 - {'statusCode': 401, 'message': 'Unauthorized. Access token is missing, invalid, audience is incorrect (https://cognitiveservices.azure.com), or have expired.'} [Error reference: https://platform.openai.com/docs/guides/error-codes/api-errors].
+Traceback (most recent call last):
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tools\common.py", line 353, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tools\aoai.py", line 154, in chat
+    completion = self._client.chat.completions.create(**params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tracing\_integrations\_openai_injector.py", line 88, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tracing\_trace.py", line 556, in wrapped
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\openai\_utils\_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\openai\resources\chat\completions.py", line 663, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\openai\_base_client.py", line 1200, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\openai\_base_client.py", line 889, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\openai\_base_client.py", line 980, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'statusCode': 401, 'message': 'Unauthorized. Access token is missing, invalid, audience is incorrect (https://cognitiveservices.azure.com), or have expired.'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 90, in invoke_tool
+    result = self._invoke_tool_inner(node, f, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 201, in _invoke_tool_inner
+    raise e
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 182, in _invoke_tool_inner
+    return f(**kwargs)
+           ^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\executor\flow_executor.py", line 1344, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tracing\_trace.py", line 556, in wrapped
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rakib.hasan\AppData\Local\Programs\Python\Python312\Lib\site-packages\promptflow\tools\common.py", line 381, in wrapper
+    raise WrappedOpenAIError(e)
+promptflow.tools.exception.WrappedOpenAIError: OpenAI API hits AuthenticationError: Error code: 401 - {'statusCode': 401, 'message': 'Unauthorized. Access token is missing, invalid, audience is incorrect (https://cognitiveservices.azure.com), or have expired.'} [Error reference: https://platform.openai.com/docs/guides/error-codes/api-errors]
+2024-06-28 13:08:34 +0200    2216 execution.flow     ERROR    Flow execution has failed. Cancelling all running nodes: chat.
