@@ -1,9 +1,0 @@
-venv/
-.env
-.vscode/settings.json
-.promptflow
-__pycache__
-
-# Other artifacts
-.index/
-.pdfs
